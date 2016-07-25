@@ -111,10 +111,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="field.h" />
+    <ClInclude Include="functions.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="tetromino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="field.cpp" />
+    <ClCompile Include="functions.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tetromino.cpp" />
   </ItemGroup>

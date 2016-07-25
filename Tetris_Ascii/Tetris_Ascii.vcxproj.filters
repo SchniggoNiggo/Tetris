@@ -21,6 +21,12 @@
     <ClInclude Include="tetromino.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="functions.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="field.cpp">
@@ -30,6 +36,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="tetromino.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="functions.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

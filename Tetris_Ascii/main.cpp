@@ -4,6 +4,10 @@ using namespace std;
 #include "field.h"
 #include "tetromino.h"
 #include <conio.h>
+#include <Windows.h>
+#include "functions.h"
+
+
 
 int main() {
 	
@@ -28,12 +32,12 @@ int main() {
 	Field field(20, 20);
 	field.print();
 
-	Tetromino ted(Tetromino::T);
+	Tetromino ted(Tetromino::J);
 	int key;
 
 	while (true)
 	{
-		system ("cls");
+		clearScreen();
 		ted.print();
 		if (_kbhit())
 		{
