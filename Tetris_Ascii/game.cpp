@@ -2,7 +2,7 @@
 
 
 Game::Game(size_t HEIGHT, size_t WIDHT)
-	: isGameOver(false), field(HEIGHT, WIDHT)
+	: isGameOver(false), actualBrick(nullptr), field(HEIGHT, WIDHT)
 {
 
 }

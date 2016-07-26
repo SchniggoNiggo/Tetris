@@ -7,12 +7,19 @@
 class Game
 {
 public:
+	
+
 	Game(size_t HEIGHT, size_t WIDHT);
 
 	void print() const;
 
 private:
+
+
+
 	Field field;
+
+	Tetromino *actualBrick;
 
 	bool isGameOver;
 
