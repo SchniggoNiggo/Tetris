@@ -10,7 +10,7 @@ public:
 			: x(0), y(0)
 		{
 		}
-
+		//43:04
 		void setY(unsigned short y) {
 			this->y = y;
 		}
@@ -33,7 +33,10 @@ public:
 	};
 
 	Field(size_t HEIGHT, size_t WIDHT);
-
+	
+	size_t getWidth() const;
+	size_t getHeight() const;
+	void setCursor(unsigned short x, unsigned short y);
 	void print() const;
 
 	~Field();

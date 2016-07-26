@@ -30,9 +30,10 @@ int main() {
 	//tetromino.printAllTemplates();
 
 
-	Tetromino ted(Tetromino::J, '#');
+	Tetromino ted(Tetromino::S, '#');
 	Game tetris(20, 20);
 	tetris.print();
+	tetris.initializeNewBrick();
 
 	int key;
 

@@ -11,11 +11,10 @@ public:
 
 	Game(size_t HEIGHT, size_t WIDHT);
 
+	bool initializeNewBrick();
 	void print() const;
 
 private:
-
-
 
 	Field field;
 
@@ -23,7 +22,7 @@ private:
 
 	bool isGameOver;
 
-
+	Tetromino *getRandomBrick();
 };
 
 

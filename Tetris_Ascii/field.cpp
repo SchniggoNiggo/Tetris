@@ -30,6 +30,22 @@ Field::Field(size_t HEIGHT, size_t WIDHT)
 	}
 }
 
+size_t Field::getWidth() const
+{
+	return this->WIDHT;
+}
+
+size_t Field::getHeight() const
+{
+	return this->HEIGHT;
+}
+
+void Field::setCursor(unsigned short x, unsigned short y)
+{
+	this->cursor.setX(x);
+	this->cursor.setY(y);
+}
+
 void Field::print() const {
 	for (size_t i = 0; i < this->HEIGHT; i++)
 	{
