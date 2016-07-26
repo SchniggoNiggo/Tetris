@@ -10,30 +10,14 @@ using namespace std;
 
 
 int main() {
-	
-	
-
-
-	//Tetromino i(Tetromino::I, 'O',' ');
-	//i.printAllTemplates();
-	//Tetromino j(Tetromino::J, 'O', ' ');
-	//j.printAllTemplates();
-	//Tetromino o(Tetromino::O, 'O', ' ');
-	//o.printAllTemplates();
-	//Tetromino s(Tetromino::S, 'O', ' ');
-	//s.printAllTemplates();
-	//Tetromino z(Tetromino::Z, 'O', ' ');
-	//z.printAllTemplates();
-	//Tetromino l(Tetromino::L, 'O', ' ');
-	//l.printAllTemplates();
-	//Tetromino tetromino(Tetromino::T, 'O', ' ');
-	//tetromino.printAllTemplates();
-
-
-	Tetromino ted(Tetromino::S, '#');
+	Tetromino ted(Tetromino::S);
 	Game tetris(20, 20);
-	tetris.print();
-	tetris.initializeNewBrick();
+	
+	/*tetris.initializeNewBrick();
+	tetris.print();*/
+
+		tetris.initializeNewBrick();
+		tetris.print();
 
 	int key;
 

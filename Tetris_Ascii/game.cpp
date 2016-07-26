@@ -21,13 +21,18 @@ bool Game::initializeNewBrick()
 
 	if (true)
 	{
-
+		
 	}
 	return false;
 }
 
 void Game::print()const  {
-	this->actualBrick.print();
+
+	if (this->actualBrick != nullptr)
+	{
+		this->actualBrick->print();
+	}
+	
 	//this->field.print();
 }
 

@@ -39,6 +39,8 @@ public:
 	void setCursor(unsigned short x, unsigned short y);
 	void print() const;
 
+	//bool drawBrick(const Tetromino *brick);
+
 	~Field();
 private:
 	char **field;
