@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-#include "field.h"
-#include "tetromino.h"
+//#include "field.h"
+//#include "tetromino.h"
 #include <conio.h>
 #include <Windows.h>
 #include "functions.h"
-
+#include "game.h"
 
 
 int main() {
@@ -29,13 +29,14 @@ int main() {
 	//Tetromino tetromino(Tetromino::T, 'O', ' ');
 	//tetromino.printAllTemplates();
 
-	Field field(20, 20);
-	field.print();
 
-	Tetromino ted(Tetromino::J);
+	Tetromino ted(Tetromino::J, '#');
+	Game tetris(20, 20);
+	tetris.print();
+
 	int key;
 
-	while (true)
+	/*while (true)
 	{
 		clearScreen();
 		ted.print();
@@ -60,7 +61,7 @@ int main() {
 
 		
 
-	}
+	}*/
 
 	system("PAUSE");
 	return 0;
