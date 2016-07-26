@@ -1,44 +1,41 @@
 #include "game.h"
-#include <time.h>
 #include "field.h"
+#include <time.h>
 
-
-Game::Game(size_t HEIGHT, size_t WIDHT)
-	: isGameOver(false), actualBrick(nullptr), field(HEIGHT, WIDHT)
+// Konstruktoren
+Game::Game(const size_t HEIGHT, const size_t WIDTH)
+	: field(HEIGHT, WIDTH),
+	actualBrick(nullptr),
+	isGameOver(false)
 {
-	srand((size_t)time(NULL));
+	srand(static_cast<size_t>(time(NULL)));
 }
 
+// Methoden
 bool Game::initializeNewBrick()
 {
 	if (this->actualBrick != nullptr)
-	{
 		delete this->actualBrick;
-	}
-	this->field.setCursor(0, (this->field.getWidth()/2)-1);
+
+	this->field.setCursor(0, (this->field.getWidth() / 2) - 1);
+
 	this->actualBrick = getRandomBrick();
 
-
-	if (true)
-	{
-		
-	}
-	return false;
+	return true;
 }
 
-void Game::print()const  {
-
+void Game::print()
+{
 	if (this->actualBrick != nullptr)
 	{
-		this->actualBrick->print();
+		if (this->field.isFree(this->actualBrick))
+			this->field.drawBrick(this->actualBrick);
 	}
-	
-	//this->field.print();
+
+	this->field.print();
 }
-
-
 
 Tetromino* Game::getRandomBrick()
 {
-	return new Tetromino( (Tetromino::TETROMINO)(rand() % 7));
-};
+	return new Tetromino(static_cast<Tetromino::TETROMINO>(rand() % 7));
+}

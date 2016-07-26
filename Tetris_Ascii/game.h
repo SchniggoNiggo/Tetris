@@ -2,32 +2,25 @@
 #define GAME_H
 
 #include "field.h"
-#include "tetromino.h"
 
 class Game
 {
 public:
-	
+	// Konstruktoren
+	Game(const size_t HEIGHT, const size_t WIDTH);
 
-	Game(size_t HEIGHT, size_t WIDHT);
-
+	// Methoden
 	bool initializeNewBrick();
-	void print() const;
+	void print();
 
 private:
-
+	// Eigenschaften
 	Field field;
-
 	Tetromino *actualBrick;
-
 	bool isGameOver;
 
-	Tetromino *getRandomBrick();
+	// Methoden
+	Tetromino* getRandomBrick();
 };
 
-
-
-
-
-
-#endif // !GAME_H
+#endif
