@@ -4,25 +4,8 @@
 #include "tetromino.h"
 
 class Field
-{
+{	
 public:
-	// Konstruktoren
-	Field(const size_t HEIGHT, const size_t WIDTH);
-
-	// getter
-	size_t getHeight() const;
-	size_t getWidth() const;
-
-	// Methoden
-	void setCursor(const unsigned short x, const unsigned short y);
-	void print() const;
-	bool isFree(const Tetromino *brick);
-	bool drawBrick(const Tetromino *brick);
-
-	// Destruktor
-	~Field();
-
-private:
 	struct Point
 	{
 		unsigned short x;
@@ -30,6 +13,11 @@ private:
 
 		Point()
 			: x(0), y(0)
+		{
+		}
+
+		Point(unsigned short x, unsigned short y)
+			: x(x), y(y)
 		{
 		}
 
@@ -53,6 +41,28 @@ private:
 			this->y = y;
 		}
 	};
+	// Konstruktoren
+	Field(const size_t HEIGHT, const size_t WIDTH);
+
+	// getter
+	size_t getHeight() const;
+	size_t getWidth() const;
+	const Point& getCursor() const;
+
+	// Methoden
+	void setCursor(const unsigned short x, const unsigned short y);
+	void print() const;
+	bool isFree(const Tetromino *brick);
+	bool drawBrick(const Tetromino *brick);
+	void clear(const Point cursor, const Tetromino *brick);
+
+	// Destruktor
+	~Field();
+
+
+
+private:
+	
 
 	// Eigenschaften
 	Point cursor;

@@ -13,6 +13,9 @@ public:
 	bool initializeNewBrick();
 	void print();
 
+	Field& getField();
+	const Tetromino* getActualBrick() const;
+
 private:
 	// Eigenschaften
 	Field field;

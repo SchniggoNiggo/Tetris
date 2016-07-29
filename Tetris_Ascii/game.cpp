@@ -26,13 +26,17 @@ bool Game::initializeNewBrick()
 
 void Game::print()
 {
-	if (this->actualBrick != nullptr)
-	{
-		if (this->field.isFree(this->actualBrick))
-			this->field.drawBrick(this->actualBrick);
-	}
-
 	this->field.print();
+}
+
+Field & Game::getField()
+{
+	return this->field;
+}
+
+const Tetromino * Game::getActualBrick() const
+{
+	return this->actualBrick;
 }
 
 Tetromino* Game::getRandomBrick()

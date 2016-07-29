@@ -27,7 +27,7 @@ Field::Field(const size_t HEIGHT, const size_t WIDTH)
 	}
 
 	for (size_t i = 0; i<this->WIDTH; i++)
-		this->field[this->HEIGHT - 1][i] = '~';
+		this->field[this->HEIGHT - 1][i] = '^';
 }
 
 // getter
@@ -39,6 +39,11 @@ size_t Field::getHeight() const
 size_t Field::getWidth() const
 {
 	return this->WIDTH;
+}
+
+const Field::Point& Field::getCursor() const
+{
+	return this->cursor;
 }
 
 // Methoden
@@ -77,7 +82,7 @@ bool Field::isFree(const Tetromino *brick)
 			{
 				if (this->field[x + i][y + j] == 'X'
 					|| this->field[x + i][y + j] == '|'
-					|| this->field[x + i][y + j] == '~')
+					|| this->field[x + i][y + j] == '^')
 					return false;
 			}
 		}
@@ -98,6 +103,20 @@ bool Field::drawBrick(const Tetromino *brick)
 		}
 	}
 	return true;
+}
+
+void Field::clear(const Point cursor, const Tetromino * brick)
+{
+	const char **tmp = brick->getActualBrickTemplate();
+
+	for (size_t i = 0; i<4; i++)
+	{
+		for (size_t j = 0; j<4; j++)
+		{
+			if (tmp[i][j] == brick->getFormat())
+				this->field[cursor.getX() + i][cursor.getY() + j] = ' ';
+		}
+	}
 }
 
 // Destruktor
