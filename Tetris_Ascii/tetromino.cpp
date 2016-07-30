@@ -1,6 +1,7 @@
+//Includes
 #include "tetromino.h"
-
 #include <iostream>
+//uses
 using std::endl;
 using std::cout;
 

@@ -1,6 +1,7 @@
+//Definition Header
 #ifndef TETROMINO_H
 #define TETROMINO_H
-
+//Includes
 #include <vector>
 using std::vector;
 

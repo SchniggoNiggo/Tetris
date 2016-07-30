@@ -1,7 +1,9 @@
+//Includes
 #include "field.h"
 #include "functions.h"
 #include "game.h"
 #include <iostream>
+//usings
 using std::endl;
 using std::cout;
 
@@ -106,13 +108,6 @@ bool Field::drawBrick(const Tetromino *brick, char format)
 			}
 		}
 	}
-	/*else
-	{
-		for (size_t i = 0; i < length; i++)
-		{
-
-		}
-	}*/
 	return true;
 
 }
@@ -153,7 +148,7 @@ size_t Field::clearCompleteLines()
 		lines = connectedLines.size();
 		for (int i = connectedLines.size() - 1; i >= 0; i--)
 		{
-			// Allocate Momory for new Field
+			// Speicherreservierung
 			char **tmp = new char*[this->HEIGHT];
 			for (int j = 0; j < this->HEIGHT; j++)
 			{
@@ -182,7 +177,7 @@ size_t Field::clearCompleteLines()
 			tmp[0][0] = '|';
 			tmp[0][this->WIDTH - 1] = '|';
 
-			// switch fields
+			// Feld Wechsel
 			char **del = this->field;
 			this->field = tmp;
 
@@ -196,23 +191,9 @@ size_t Field::clearCompleteLines()
 		return lines;
 	}
 }
-//void Field::clear(const Point cursor, const Tetromino * brick)
-//{
-//	const char **tmp = brick->getActualBrickTemplate();
-//
-//	for (size_t i = 0; i<4; i++)
-//	{
-//		for (size_t j = 0; j<4; j++)
-//		{
-//			if (tmp[i][j] == brick->getFormat())
-//				this->field[cursor.getX() + i][cursor.getY() + j] = ' ';
-//		}
-//	}
-//}
 
 void Field::clear(char format)
 {
-	//const char **tmp = brick->getActualBrickTemplate();
 
 	for (size_t i = 0; i<this->getHeight(); i++)
 	{
@@ -223,31 +204,6 @@ void Field::clear(char format)
 		}
 	}
 }
-
-//void Field::tamp(const Tetromino * brick)
-//{
-//	const char **tmp = brick->getActualBrickTemplate();
-//
-//	for (size_t i = 0; i<4; i++)
-//	{
-//		for (size_t j = 0; j<4; j++)
-//		{
-//			if (tmp[i][j] == brick->getFormat())
-//				this->field[this->cursor.getX() + i][this->cursor.getY() + j] = 'X';
-//		}
-//	}
-//}
-
-//Game tetris(20,20);
-//
-//void Field::move(const signed short moveX, const signed short moveY, Field::Point alt)
-//{
-//	setCursor(getCursor().getX() + moveX, getCursor().getY()+moveY);
-//	clearScreen();
-//	clear(alt, tetris.getActualBrick());
-//	drawBrick(tetris.getActualBrick());
-//	tetris.print();
-//}
 
 // Destruktor
 Field::~Field()

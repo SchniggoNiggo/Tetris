@@ -1,3 +1,4 @@
+//Includes
 #include "functions.h"
 #include "game.h"
 #include <Windows.h>
@@ -5,6 +6,7 @@
 #include <iostream>
 #include <time.h>
 #include <cmath>
+//pragma Winmedia lib
 #pragma comment(lib, "winmm.lib")
 using namespace std;
 
@@ -16,9 +18,6 @@ int main()
 	setlocale(LC_ALL, "");
 	Game tetris(15, 15);
 	
-	
-	//PlaySound("tetris.WAV", hInst, SND_LOOP | SND_ASYNC |SND_RESOURCE);
-	//PlayResource("TetrisMusic");
 	PlaySound("tetrisMusic",hInst, SND_RESOURCE | SND_ASYNC | SND_LOOP);
 	
 	tetris.initializeNewBrick();

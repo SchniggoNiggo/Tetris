@@ -1,3 +1,4 @@
+//Definition Header
 #ifndef GAME_H
 #define GAME_H
 
@@ -16,13 +17,18 @@ public:
 	bool run();
 	void action(int key);
 	void move(int key);
+
+	//Getter
 	Field& getField();
 	Tetromino* getActualBrick() const;
 	const size_t& getIntervall() const;
 	const size_t& getHighscore() const;
+
+	//Setter
 	int updateHighscore(const size_t &lines);
 
 private:
+
 	// Eigenschaften
 	Field field;
 	Tetromino *actualBrick;
@@ -30,6 +36,7 @@ private:
 	bool isGameOver;
 	unsigned short intervall;
 	size_t highscore;
+
 	// Methoden
 	Tetromino* getRandomBrick();
 	

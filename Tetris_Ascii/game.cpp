@@ -1,3 +1,4 @@
+//Includes
 #include "game.h"
 #include "field.h"
 #include <time.h>
@@ -5,6 +6,7 @@
 #include <iostream>
 #include <Windows.h>
 using namespace std;
+
 // Konstruktoren
 Game::Game(const size_t HEIGHT, const size_t WIDTH)
 	: field(HEIGHT, WIDTH),
@@ -93,7 +95,6 @@ void Game::action(int key)
 	case ' ':
 		int i;
 		system("CLS");
-		//PlaySound(TEXT("SystemStart"), nullptr, SND_ALIAS|SND_ASYNC);
 		PlaySound(nullptr, 0, 0);
 		cout << "Das Spiel ist pausiert, drücke eine beliebige zum fortfahren..." << endl;
 		system("PAUSE");
@@ -132,10 +133,7 @@ void Game::move(int key)
 	}
 }
 
-//void Game::tempActualBrick(const Tetromino * brick)
-//{
-//	this->field.tamp(brick);
-//}
+//Getter
 
 Field & Game::getField()
 {
@@ -157,6 +155,12 @@ const size_t & Game::getHighscore() const
 	return this->highscore;
 }
 
+Tetromino* Game::getRandomBrick()
+{
+	return new Tetromino(static_cast<Tetromino::TETROMINO>(rand() % 7));
+}
+
+//Setter
 int Game::updateHighscore(const size_t & lines)
 {
 	int level = 1;
@@ -228,7 +232,3 @@ int Game::updateHighscore(const size_t & lines)
 	return level;
 }
 
-Tetromino* Game::getRandomBrick()
-{
-	return new Tetromino(static_cast<Tetromino::TETROMINO>(rand() % 7));
-}

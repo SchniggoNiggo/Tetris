@@ -1,6 +1,7 @@
+//Includes
 #include "functions.h"
 #include <Windows.h>
-
+//Methoden
 void clearScreen() {
 	HANDLE hOut;
 	COORD position;

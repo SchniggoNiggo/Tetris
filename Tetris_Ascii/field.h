@@ -1,17 +1,20 @@
+//Header Definition
 #ifndef FIELD_H
 #define FIELD_H
 
+//Includes
 #include "tetromino.h"
-//#include "game.h"
 
 class Field
 {	
 public:
+	//Pointer
 	struct Point
 	{
+		//Variablen
 		unsigned short x;
 		unsigned short y;
-
+		//initializer
 		Point()
 			: x(0), y(0)
 		{
@@ -22,6 +25,7 @@ public:
 		{
 		}
 
+		//Getter
 		unsigned short getX() const
 		{
 			return this->x;
@@ -31,7 +35,7 @@ public:
 		{
 			return this->y;
 		}
-
+		//Setter
 		void setX(const unsigned short x)
 		{
 			this->x = x;
@@ -56,18 +60,12 @@ public:
 	bool isFree(const Tetromino *brick);
 	bool drawBrick(const Tetromino *brick, char format = 'O');
 	size_t clearCompleteLines();
-	/*void clear(const Point cursor, const Tetromino *brick);*/
 	void clear(char format);
-	//void move(const signed short moveX, const signed short moveY, Field::Point alt);
 
 	// Destruktor
 	~Field();
-
-
-
+//Private Sub
 private:
-	
-
 	// Eigenschaften
 	Point cursor;
 	char **field;
