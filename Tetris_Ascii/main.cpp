@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <iostream>
 #include <time.h>
+#include <cmath>
 #pragma comment(lib, "winmm.lib")
 using namespace std;
 
@@ -18,7 +19,7 @@ int main()
 	
 	//PlaySound("tetris.WAV", hInst, SND_LOOP | SND_ASYNC |SND_RESOURCE);
 	//PlayResource("TetrisMusic");
-	PlaySound("tetrisMusic",hInst, SND_RESOURCE | SND_ASYNC);
+	PlaySound("tetrisMusic",hInst, SND_RESOURCE | SND_ASYNC | SND_LOOP);
 	
 	tetris.initializeNewBrick();
 	tetris.getField().drawBrick(tetris.getActualBrick());
@@ -64,13 +65,12 @@ int main()
 				tetris.print();
 			}
 			else {
-				
-
 				tamp = true;
 				feld.setCursor(feld.getCursor().getX() - 1, feld.getCursor().getY());
 				feld.drawBrick(tetris.getActualBrick(), 'X');
 				size_t lines = feld.clearCompleteLines();
 				tetris.updateHighscore(lines);
+				tetris.updateHighscore(5);
 				tetris.initializeNewBrick();
 				clearScreen();
 				tetris.print();
@@ -102,7 +102,19 @@ int main()
 	system("CLS");
 	cout << "GAME OVER" << endl;
 	cout << "Score: " << tetris.getHighscore() << endl;
-	cout << "Spielzeit: " << static_cast<size_t>(time(nullptr)) - actualPlayTime << " Sekunden" <<endl;
+	int playtimeBerechner = static_cast<size_t>(time(nullptr)) - actualPlayTime;
+	if (playtimeBerechner > 60)
+	{
+		int minuten = round(playtimeBerechner/60);
+		int sekunden = playtimeBerechner % 60;
+		cout << "Spielzeit: "  << minuten << " Minuten und " << minuten * 60 << " Sekunden." << endl;
+	
+	}
+	else
+	{
+		cout << "Spielzeit: " << playtimeBerechner << " Sekunden" << endl;
+	}
+	
 	system("PAUSE");
 	return 0;
 }

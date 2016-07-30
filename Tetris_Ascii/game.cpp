@@ -162,6 +162,8 @@ int Game::updateHighscore(const size_t & lines)
 	int level = 1;
 	switch (lines)
 	{
+	case 5: this->highscore += 250;
+		break;
 	case 1: this->highscore += 2000;
 		break;
 	case 2:	this->highscore += 2500;
@@ -176,7 +178,7 @@ int Game::updateHighscore(const size_t & lines)
 	if (this->highscore <= 15000)
 	{
 		level = 1;
-		this->intervall = 1000;
+		this->intervall = 950;
 	}
 	if (this->highscore > 15000 && highscore < 25000)
 	{
@@ -206,17 +208,17 @@ int Game::updateHighscore(const size_t & lines)
 	if (this->highscore > 45000 && highscore < 50000)
 	{
 		level = 7;
-		this->intervall = 450;
+		this->intervall = 400;
 	}
 	if (this->highscore > 50000 && highscore < 55000)
 	{
 		level = 8;
-		this->intervall = 400;
+		this->intervall = 300;
 	}
 	if (this->highscore > 55000 && highscore < 60000)
 	{
 		level = 9;
-		this->intervall = 300;
+		this->intervall = 250;
 	}
 	if (this->highscore > 60000)
 	{
