@@ -2,12 +2,14 @@
 #include "field.h"
 #include <time.h>
 #include <conio.h>
-
+#include <iostream>
+using namespace std;
 // Konstruktoren
 Game::Game(const size_t HEIGHT, const size_t WIDTH)
 	: field(HEIGHT, WIDTH),
 	actualBrick(nullptr),
-	isGameOver(false)
+	isGameOver(false),
+	nextBrick(nullptr)
 {
 	srand(static_cast<size_t>(time(NULL)));
 }
@@ -20,7 +22,18 @@ bool Game::initializeNewBrick()
 
 	this->field.setCursor(0, (this->field.getWidth() / 2) - 1);
 
-	this->actualBrick = getRandomBrick();
+	if (this->nextBrick != nullptr)
+	{
+		this->actualBrick = this->nextBrick;
+		this->nextBrick = getRandomBrick();
+	}
+	else
+	{
+		this->actualBrick = getRandomBrick();
+	}
+	this->nextBrick = getRandomBrick();
+	
+
 	if (this->field.isFree(this->actualBrick))
 	{
 		return true;
@@ -32,9 +45,17 @@ bool Game::initializeNewBrick()
 	}
 }
 
-void Game::print()
+void Game::print() const
 {
 	this->field.print();
+}
+
+void Game::printNextBrick() const
+{
+	if (this->nextBrick!=nullptr)
+	{
+		this->nextBrick->print();
+	}
 }
 
 bool Game::run()
@@ -64,6 +85,14 @@ void Game::action(int key)
 		{
 			this->actualBrick->rotate('a');
 		}
+		break;
+
+	case ' ':
+		int i;
+		system("CLS");
+		cout << "Das Spiel ist pausiert, drücke eine beliebige zum fortfahren..." << endl;
+		system("PAUSE");
+		system("CLS");
 		break;
 	}
 }

@@ -7,7 +7,8 @@ using namespace std;
 
 int main()
 {
-	Game tetris(15, 10);
+	setlocale(LC_ALL, "");
+	Game tetris(15, 15);
 	//Tetromino ted(Tetromino::TETROMINO::I);
 	tetris.initializeNewBrick();
 	tetris.getField().drawBrick(tetris.getActualBrick());
@@ -33,6 +34,7 @@ int main()
 			feld.drawBrick(tetris.getActualBrick());
 			clearScreen();
 			tetris.print();
+
 		}
 	
 
@@ -60,7 +62,11 @@ int main()
 				clearScreen();
 				tetris.print();
 			}
+			cout << endl;
+			tetris.printNextBrick();
 		}
+
+		
 	}
 		
 	clearScreen();

@@ -11,7 +11,8 @@ public:
 
 	// Methoden
 	bool initializeNewBrick();
-	void print();
+	void print() const;
+	void printNextBrick() const;
 	bool run();
 	void action(int key);
 	void move(int key);
@@ -22,6 +23,7 @@ private:
 	// Eigenschaften
 	Field field;
 	Tetromino *actualBrick;
+	Tetromino *nextBrick;
 	bool isGameOver;
 
 	// Methoden
