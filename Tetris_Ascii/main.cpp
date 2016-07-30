@@ -55,6 +55,7 @@ int main()
 			else {
 				feld.setCursor(feld.getCursor().getX() - 1, feld.getCursor().getY());
 				feld.drawBrick(tetris.getActualBrick(), 'X');
+				feld.clearCompleteLines();
 				tetris.initializeNewBrick();
 				clearScreen();
 				tetris.print();

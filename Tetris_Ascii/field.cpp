@@ -95,16 +95,6 @@ bool Field::drawBrick(const Tetromino *brick, char format)
 {
 	const char **tmp = brick->getActualBrickTemplate();
 
-	/*for (size_t i = 0; i<4; i++)
-	{
-		for (size_t j = 0; j<4; j++)
-		{
-			if (tmp[i][j] == brick->getFormat())
-				this->field[this->cursor.getX() + i][this->cursor.getY() + j] = format;
-		}
-	}
-	return true;*/
-
 	if (format != ' ')
 	{
 		for (size_t i = 0; i < 4; i++)
@@ -125,6 +115,87 @@ bool Field::drawBrick(const Tetromino *brick, char format)
 	}*/
 	return true;
 
+}
+
+bool Field::clearCompleteLines()
+{
+	vector<int> connectedLines;
+	bool found = true;
+
+	for (size_t i = this->HEIGHT-2;i>=0; i--)
+	{
+		if (this->field[i][1]=='X')
+		{
+			bool found = true;
+			
+			for (int j = 1; j < this->WIDTH - 1; j++)
+			{
+				if (this->field[i][j] != 'X')
+				{
+					found = false;
+					break;
+				}
+			}
+
+			if (found)
+			{
+				connectedLines.push_back(i);
+			}
+		}
+	}
+
+	if (connectedLines.size() < 1)
+	{
+		return false;
+	}
+	else
+	{
+		//Speicherreservierung für neues Feld
+		for ( int i = connectedLines.size() - 1; i>=0;i--)
+		{
+			char **tmp = new char*[this->HEIGHT];
+			for (int j = 0; j < this->HEIGHT; j++)
+			{
+				tmp[j] = new char[this -> WIDTH];
+			}
+
+			for (int j = this->HEIGHT - 1; j > connectedLines[i]; j--)
+			{
+				for (int k = 0; k < this->WIDTH; k++)
+				{
+					tmp[j][k] = this->field[j][k];
+				}
+			}
+			
+			for (int j = connectedLines[i]-1; j >= 0; j--)
+			{
+				for (int k = 0; k < this->WIDTH; k++)
+				{
+					tmp[j + 1][k] = this->field[j][k];
+				}
+			}
+			
+			for (int i = 1; i < this->WIDTH - 1; i++)
+			{
+				tmp[0][i] = ' ';
+			}
+			tmp[0][0] = '|';
+			tmp[0][this->WIDTH - 1] = '|';
+
+			//Feld Wechsel
+			char **del = this->field;
+			this->field = tmp;
+
+			for (int i = 0; i < this->WIDTH; i++)
+			{
+				delete[](del[i]);
+			}
+			delete[] del;
+
+			//connectedLines.pop_back();
+		}
+		return true;
+	}
 }
 
 //void Field::clear(const Point cursor, const Tetromino * brick)

@@ -55,6 +55,7 @@ public:
 	void print() const;
 	bool isFree(const Tetromino *brick);
 	bool drawBrick(const Tetromino *brick, char format = 'O');
+	bool clearCompleteLines();
 	/*void clear(const Point cursor, const Tetromino *brick);*/
 	void clear(char format);
 	//void move(const signed short moveX, const signed short moveY, Field::Point alt);
