@@ -113,6 +113,8 @@
     <ClInclude Include="field.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="tetromino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +123,12 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tetromino.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tetris_Ascii.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="tetris.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

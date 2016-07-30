@@ -3,13 +3,16 @@
 #include <time.h>
 #include <conio.h>
 #include <iostream>
+#include <Windows.h>
 using namespace std;
 // Konstruktoren
 Game::Game(const size_t HEIGHT, const size_t WIDTH)
 	: field(HEIGHT, WIDTH),
 	actualBrick(nullptr),
 	isGameOver(false),
-	nextBrick(nullptr)
+	nextBrick(nullptr),
+	intervall(1000),
+	highscore(0)
 {
 	srand(static_cast<size_t>(time(NULL)));
 }
@@ -90,8 +93,11 @@ void Game::action(int key)
 	case ' ':
 		int i;
 		system("CLS");
+		//PlaySound(TEXT("SystemStart"), nullptr, SND_ALIAS|SND_ASYNC);
+		PlaySound(nullptr, 0, 0);
 		cout << "Das Spiel ist pausiert, drücke eine beliebige zum fortfahren..." << endl;
 		system("PAUSE");
+		PlaySound("tetrisMusic", nullptr, SND_RESOURCE | SND_ASYNC);
 		system("CLS");
 		break;
 	}
@@ -139,6 +145,85 @@ Field & Game::getField()
 Tetromino * Game::getActualBrick() const
 {
 	return this->actualBrick;
+}
+
+const size_t & Game::getIntervall() const
+{
+	return this->intervall;
+}
+
+const size_t & Game::getHighscore() const
+{
+	return this->highscore;
+}
+
+int Game::updateHighscore(const size_t & lines)
+{
+	int level = 1;
+	switch (lines)
+	{
+	case 1: this->highscore += 2000;
+		break;
+	case 2:	this->highscore += 2500;
+		break;
+	case 3:	this->highscore += 3000;
+		break;
+	case 4:	this->highscore += 5000;
+		break;
+	}
+
+
+	if (this->highscore <= 15000)
+	{
+		level = 1;
+		this->intervall = 1000;
+	}
+	if (this->highscore > 15000 && highscore < 25000)
+	{
+		level = 2;
+		this->intervall = 900;
+	}
+	if (this->highscore > 25000 && highscore < 30000)
+	{
+		level = 3;
+		this->intervall = 800;
+	}
+	if (this->highscore > 30000 && highscore < 35000)
+	{
+		level = 4;
+		this->intervall = 700;
+	}
+	if (this->highscore > 35000 && highscore < 40000)
+	{
+		level = 5;
+		this->intervall = 600;
+	}
+	if (this->highscore > 40000 && highscore < 45000)
+	{
+		level = 6;
+		this->intervall = 500;
+	}
+	if (this->highscore > 45000 && highscore < 50000)
+	{
+		level = 7;
+		this->intervall = 450;
+	}
+	if (this->highscore > 50000 && highscore < 55000)
+	{
+		level = 8;
+		this->intervall = 400;
+	}
+	if (this->highscore > 55000 && highscore < 60000)
+	{
+		level = 9;
+		this->intervall = 300;
+	}
+	if (this->highscore > 60000)
+	{
+		level = 10;
+		this->intervall = 150;
+	}
+	return level;
 }
 
 Tetromino* Game::getRandomBrick()
