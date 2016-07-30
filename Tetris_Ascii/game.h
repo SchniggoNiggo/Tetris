@@ -18,6 +18,9 @@ public:
 	void move(int key);
 	Field& getField();
 	Tetromino* getActualBrick() const;
+	const size_t& getIntervall() const;
+	const size_t& getHighscore() const;
+	int updateHighscore(const size_t &lines);
 
 private:
 	// Eigenschaften
@@ -25,9 +28,11 @@ private:
 	Tetromino *actualBrick;
 	Tetromino *nextBrick;
 	bool isGameOver;
-
+	unsigned short intervall;
+	size_t highscore;
 	// Methoden
 	Tetromino* getRandomBrick();
+	
 
 };
 

@@ -3,5 +3,4 @@
 
 void clearScreen();
 
-
 #endif // !FUNCTIONS_H
