@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	Game tetris(20, 10);
+	Game tetris(15, 10);
 	//Tetromino ted(Tetromino::TETROMINO::I);
 	tetris.initializeNewBrick();
 	tetris.getField().drawBrick(tetris.getActualBrick());

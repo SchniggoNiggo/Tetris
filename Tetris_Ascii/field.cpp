@@ -120,14 +120,13 @@ bool Field::drawBrick(const Tetromino *brick, char format)
 bool Field::clearCompleteLines()
 {
 	vector<int> connectedLines;
-	bool found = true;
 
-	for (size_t i = this->HEIGHT-2;i>=0; i--)
+	for (int i = this->HEIGHT - 2; i >= 0; i--)
 	{
-		if (this->field[i][1]=='X')
+		if (this->field[i][1] == 'X')
 		{
 			bool found = true;
-			
+
 			for (int j = 1; j < this->WIDTH - 1; j++)
 			{
 				if (this->field[i][j] != 'X')
@@ -150,14 +149,15 @@ bool Field::clearCompleteLines()
 	}
 	else
 	{
-		//Speicherreservierung für neues Feld
-		for ( int i = connectedLines.size() - 1; i>=0;i--)
+		for (int i = connectedLines.size() - 1; i >= 0; i--)
 		{
+			// Allocate Momory for new Field
 			char **tmp = new char*[this->HEIGHT];
 			for (int j = 0; j < this->HEIGHT; j++)
 			{
-				tmp[j] = new char[this -> WIDTH];
+				tmp[j] = new char[this->WIDTH];
 			}
+			//---
 
 			for (int j = this->HEIGHT - 1; j > connectedLines[i]; j--)
 			{
@@ -166,15 +166,13 @@ bool Field::clearCompleteLines()
 					tmp[j][k] = this->field[j][k];
 				}
 			}
-			
-			for (int j = connectedLines[i]-1; j >= 0; j--)
+			for (int j = connectedLines[i] - 1; j >= 0; j--)
 			{
 				for (int k = 0; k < this->WIDTH; k++)
 				{
 					tmp[j + 1][k] = this->field[j][k];
 				}
 			}
-			
 			for (int i = 1; i < this->WIDTH - 1; i++)
 			{
 				tmp[0][i] = ' ';
@@ -182,7 +180,7 @@ bool Field::clearCompleteLines()
 			tmp[0][0] = '|';
 			tmp[0][this->WIDTH - 1] = '|';
 
-			//Feld Wechsel
+			// switch fields
 			char **del = this->field;
 			this->field = tmp;
 
@@ -191,13 +189,11 @@ bool Field::clearCompleteLines()
 				delete[](del[i]);
 			}
 			delete[] del;
-
-			//connectedLines.pop_back();
 		}
+
 		return true;
 	}
 }
-
 //void Field::clear(const Point cursor, const Tetromino * brick)
 //{
 //	const char **tmp = brick->getActualBrickTemplate();
