@@ -12,9 +12,11 @@ public:
 	// Methoden
 	bool initializeNewBrick();
 	void print();
-
+	bool run();
+	void action(int key);
+	void move(int key);
 	Field& getField();
-	const Tetromino* getActualBrick() const;
+	Tetromino* getActualBrick() const;
 
 private:
 	// Eigenschaften
@@ -24,6 +26,7 @@ private:
 
 	// Methoden
 	Tetromino* getRandomBrick();
+
 };
 
 #endif

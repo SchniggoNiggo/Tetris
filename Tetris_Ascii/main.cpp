@@ -1,13 +1,14 @@
 #include "functions.h"
 #include "game.h"
-
-#include <cstdlib>
+#include <Windows.h>
 #include <conio.h>
+#include <iostream>
+using namespace std;
 
 int main()
 {
-	Game tetris(20, 20);
-
+	Game tetris(20, 10);
+	//Tetromino ted(Tetromino::TETROMINO::I);
 	tetris.initializeNewBrick();
 	tetris.getField().drawBrick(tetris.getActualBrick());
 	tetris.print();
@@ -17,51 +18,52 @@ int main()
 
 	Field &feld = tetris.getField();
 	int i = 0;
-	while (true)
+	//int a,b;
+	//string aa, bb;
+
+	while (tetris.run())
 	{
+		if (_kbhit())
+		{
+			key = _getch();
+			tetris.action(key);
+			key = ' ';
+
+			feld.clear(tetris.getActualBrick()->getFormat());
+			feld.drawBrick(tetris.getActualBrick());
+			clearScreen();
+			tetris.print();
+		}
+	
+
+
 		i++;
-		if (i % 300000000 == 0)
-		{			
+		if (i % 30000 == 0)
+		{
+			Field::Point alt(feld.getCursor().getX(), feld.getCursor().getY());
 			feld.setCursor(feld.getCursor().getX() + 1, feld.getCursor().getY());
+			
+
 			if (feld.isFree(tetris.getActualBrick()))
-			{
-				clearScreen();
-				feld.clear(Field::Point(feld.getCursor().getX()-1, feld.getCursor().getY()), tetris.getActualBrick());
+			{	
+				feld.clear(tetris.getActualBrick()->getFormat());
 				feld.drawBrick(tetris.getActualBrick());
-				tetris.print();
 				i = 0;
+				clearScreen();
+				tetris.print();
 			}
 			else {
 				feld.setCursor(feld.getCursor().getX() - 1, feld.getCursor().getY());
+				feld.drawBrick(tetris.getActualBrick(), 'X');
+				tetris.initializeNewBrick();
+				clearScreen();
+				tetris.print();
 			}
 		}
+	}
 		
-	}
-
-	/*while( true )
-	{
 	clearScreen();
-	ted.print();
-	if( _kbhit() )
-	{
-	key = _getch();
-
-	switch( key )
-	{
-	case 'a':
-	case 'A':
-	ted.rotate( 'a' );
-	break;
-	case 'd':
-	case 'D':
-	ted.rotate( 'd' );
-	break;
-	}
-
-	key = ' ';
-	}
-	}*/
-
+	cout << "GAME OVER" << endl;
 	system("PAUSE");
 	return 0;
 }

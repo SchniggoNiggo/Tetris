@@ -1,5 +1,6 @@
 #include "field.h"
-
+#include "functions.h"
+#include "game.h"
 #include <iostream>
 using std::endl;
 using std::cout;
@@ -90,34 +91,94 @@ bool Field::isFree(const Tetromino *brick)
 	return true;
 }
 
-bool Field::drawBrick(const Tetromino *brick)
+bool Field::drawBrick(const Tetromino *brick, char format)
 {
 	const char **tmp = brick->getActualBrickTemplate();
 
-	for (size_t i = 0; i<4; i++)
+	/*for (size_t i = 0; i<4; i++)
 	{
 		for (size_t j = 0; j<4; j++)
 		{
 			if (tmp[i][j] == brick->getFormat())
-				this->field[this->cursor.getX() + i][this->cursor.getY() + j] = tmp[i][j];
+				this->field[this->cursor.getX() + i][this->cursor.getY() + j] = format;
 		}
 	}
+	return true;*/
+
+	if (format != ' ')
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			for (size_t j = 0; j < 4; j++)
+			{
+				if (tmp[i][j] == brick->getFormat())
+				this->field[this->cursor.getX() + i][this->cursor.getY() + j] = format;
+			}
+		}
+	}
+	/*else
+	{
+		for (size_t i = 0; i < length; i++)
+		{
+
+		}
+	}*/
 	return true;
+
 }
 
-void Field::clear(const Point cursor, const Tetromino * brick)
-{
-	const char **tmp = brick->getActualBrickTemplate();
+//void Field::clear(const Point cursor, const Tetromino * brick)
+//{
+//	const char **tmp = brick->getActualBrickTemplate();
+//
+//	for (size_t i = 0; i<4; i++)
+//	{
+//		for (size_t j = 0; j<4; j++)
+//		{
+//			if (tmp[i][j] == brick->getFormat())
+//				this->field[cursor.getX() + i][cursor.getY() + j] = ' ';
+//		}
+//	}
+//}
 
-	for (size_t i = 0; i<4; i++)
+void Field::clear(char format)
+{
+	//const char **tmp = brick->getActualBrickTemplate();
+
+	for (size_t i = 0; i<this->getHeight(); i++)
 	{
-		for (size_t j = 0; j<4; j++)
+		for (size_t j = 0; j<getWidth(); j++)
 		{
-			if (tmp[i][j] == brick->getFormat())
-				this->field[cursor.getX() + i][cursor.getY() + j] = ' ';
+			if (this->field[i][j] == format)
+				this->field[i][j] = ' ';
 		}
 	}
 }
+
+//void Field::tamp(const Tetromino * brick)
+//{
+//	const char **tmp = brick->getActualBrickTemplate();
+//
+//	for (size_t i = 0; i<4; i++)
+//	{
+//		for (size_t j = 0; j<4; j++)
+//		{
+//			if (tmp[i][j] == brick->getFormat())
+//				this->field[this->cursor.getX() + i][this->cursor.getY() + j] = 'X';
+//		}
+//	}
+//}
+
+//Game tetris(20,20);
+//
+//void Field::move(const signed short moveX, const signed short moveY, Field::Point alt)
+//{
+//	setCursor(getCursor().getX() + moveX, getCursor().getY()+moveY);
+//	clearScreen();
+//	clear(alt, tetris.getActualBrick());
+//	drawBrick(tetris.getActualBrick());
+//	tetris.print();
+//}
 
 // Destruktor
 Field::~Field()
