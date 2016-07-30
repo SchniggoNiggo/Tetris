@@ -117,9 +117,8 @@ bool Field::drawBrick(const Tetromino *brick, char format)
 
 }
 
-size_t Field::clearCompleteLines()
+bool Field::clearCompleteLines()
 {
-	size_t lines = 0;
 	vector<int> connectedLines;
 
 	for (int i = this->HEIGHT - 2; i >= 0; i--)
@@ -146,11 +145,10 @@ size_t Field::clearCompleteLines()
 
 	if (connectedLines.size() < 1)
 	{
-		return 0;
+		return false;
 	}
 	else
 	{
-		lines = connectedLines.size();
 		for (int i = connectedLines.size() - 1; i >= 0; i--)
 		{
 			// Allocate Momory for new Field
@@ -193,7 +191,7 @@ size_t Field::clearCompleteLines()
 			delete[] del;
 		}
 
-		return lines;
+		return true;
 	}
 }
 //void Field::clear(const Point cursor, const Tetromino * brick)
